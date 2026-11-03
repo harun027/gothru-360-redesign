@@ -162,15 +162,15 @@ p{margin:0}
 .app__ico svg{width:18px;height:18px}
 .app__dist{margin:12px 14px 0;background:#ececec;border-radius:16px;padding:12px 14px}
 .app__dist div{display:flex;justify-content:space-between;font:700 .875rem/1 var(--text);margin-bottom:10px}
-.app__plane{position:relative;aspect-ratio:1/1.45;margin-top:8px;touch-action:none}
+.app__plane{position:relative;aspect-ratio:1/1.3;margin-top:4px;touch-action:none}
 .app__line{position:absolute;left:50%;top:0;bottom:0;width:5px;margin-left:-2.5px;background:#2563eb;opacity:.35;transition:opacity .25s ease;z-index:3;pointer-events:none}
 .try.is-aligned .app__line{opacity:1}
-.disc{position:absolute;left:50%;width:72%;aspect-ratio:1;margin-left:-36%;border-radius:50%;overflow:hidden;transition:top .35s var(--ease-out)}
+.disc{position:absolute;left:50%;width:74%;aspect-ratio:1;translate:-50% 0;border-radius:50%;overflow:hidden;transition:top .35s var(--ease-out),width .35s var(--ease-out)}
 .disc img{width:100%;height:100%;object-fit:cover;pointer-events:none}
 .disc.is-top{z-index:2;cursor:grab}
 .disc.is-top:active{cursor:grabbing}
 .node{position:absolute;left:50%;top:50%;width:38px;height:38px;margin:-19px 0 0 -19px;border-radius:50%;background:#2563eb;color:#fff;border:3px solid #fff;display:grid;place-items:center;font:700 1rem/1 var(--text);z-index:4;pointer-events:none}
-.app__hint{text-align:center;font-size:.8125rem;color:#555;padding:8px 16px 14px}
+.app__hint{text-align:center;font-size:.8125rem;color:#555;padding:4px 16px 12px}
 .app__save{margin:0 14px 16px;width:calc(100% - 28px);justify-content:center;border-radius:14px;padding:16px;background:#111;color:#fff}
 .app__save:disabled{background:#d6d6d6;color:#505050;cursor:not-allowed}
 input[type=range]{-webkit-appearance:none;appearance:none;width:100%;height:8px;border-radius:99px;background:#cfcfcf;margin:0}
@@ -749,9 +749,10 @@ footer{background:var(--ink);color:#fff;margin-top:clamp(88px,11vw,160px);paddin
   const target=i=>i?180:0, norm=a=>((a%360)+540)%360-180;
   const paint=i=>discs[i].querySelector('img').style.transform=`rotate(${angle[i]+target(i)}deg)`;
   function layout(){
-    const d=+dist.value, D=72/1.45, c=D*(.55+(d-1)/11*.25); // disc size and centre gap in % of plane height
-    const y0=(100-(D+c))/2;
-    discs[0].style.top=y0+'%'; discs[1].style.top=(y0+c)+'%';
+    // the pair always fills the plane minus a thin margin; farther apart means smaller discs, like zooming out
+    const d=+dist.value, k=.55+(d-1)/11*.25, M=3.5, D=(100-2*M)/(1+k), c=D*k; // % of plane height
+    discs.forEach(el=>el.style.width=D*1.3+'%');   // plane is 1.3x taller than wide
+    discs[0].style.top=M+'%'; discs[1].style.top=(M+c)+'%';
     discs.forEach((el,i)=>{el.classList.toggle('is-top',i===top);paint(i)});
     distVal.textContent=d+' m';
   }
