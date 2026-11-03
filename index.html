@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>GoThru 360 Virtual Tour Maker: real estate 360 tours made on your phone</title>
-<meta name="description" content="Shoot every room in 360, connect the photos on your phone and send buyers a hosted tour link, checked by the GoThru Auto Moderation Pipeline. GoThru 360 Virtual Tour Maker for iPhone and Android.">
+<meta name="description" content="Shoot every room in 360, connect the photos on your phone and send buyers a hosted tour link through the GoThru Auto Moderation Pipeline. GoThru 360 Virtual Tour Maker for iPhone and Android.">
 <meta name="theme-color" content="#fbf6ee">
 <meta name="robots" content="noindex, nofollow">
 <link rel="icon" href="img/brand/icon.png">
@@ -283,13 +283,13 @@ footer{background:var(--ink);color:#fff;margin-top:clamp(88px,11vw,160px);paddin
 .mod__list [aria-current] .mod__ico{background:var(--yellow);box-shadow:none}
 .mod__list .is-done .mod__ico{background:var(--teal-d);box-shadow:none}
 .mod__list .is-done .mod__ico::after{opacity:1;transform:rotate(45deg)}
-.mod__shot{position:relative;aspect-ratio:4/3;border-radius:var(--r-xl);overflow:hidden;background:#2b241c}
-.mod__shot img{width:100%;height:100%;object-fit:cover;object-position:33% 50%}
-.mod__status{position:absolute;top:20px;left:20px;display:inline-flex;align-items:center;gap:10px;padding:12px 16px;border-radius:999px;background:#fff;font:700 .9375rem/1 var(--text);box-shadow:0 14px 30px -14px rgba(22,24,29,.5)}
-.mod__room{position:absolute;left:30%;top:52%;padding:10px 16px;border-radius:999px;background:var(--yellow);font:800 1.125rem/1 var(--display);letter-spacing:-.01em;opacity:0;transform:translateY(10px) scale(.96);transition:opacity .3s ease,transform .45s var(--ease-out)}
-.mod__shot[data-stage="3"] .mod__room,.mod__shot[data-stage="4"] .mod__room{opacity:1;transform:none}
-.mod__bar{position:absolute;left:20px;right:20px;bottom:20px;height:6px;border-radius:6px;background:rgba(255,255,255,.35);overflow:hidden}
-.mod__bar i{display:block;height:100%;background:#fff;transform:scaleX(var(--p,.2));transform-origin:left;transition:transform .6s var(--ease-out)}
+.mod__shot{position:relative;display:grid;place-items:center;padding:clamp(40px,5vw,64px) 24px clamp(64px,7vw,88px);border-radius:var(--r-xl);background:var(--blue-50);overflow:hidden}
+.mod__phone{position:relative;width:min(300px,74%)}
+.mod__phone .phone__screen{display:grid}
+.mod__phone .phone__screen img{grid-area:1/1;opacity:0;transition:opacity .35s ease}
+.mod__phone .phone__screen img.is-on{opacity:1}
+.mod__bar{position:absolute;left:20%;right:20%;bottom:clamp(28px,3vw,40px);height:6px;border-radius:6px;background:rgba(22,24,29,.12);overflow:hidden}
+.mod__bar i{display:block;height:100%;background:var(--ink);transform:scaleX(var(--p,.17));transform-origin:left;transition:transform .6s var(--ease-out)}
 
 /* real estate tour */
 .tour{padding-bottom:clamp(88px,11vw,160px)}
@@ -311,7 +311,7 @@ footer{background:var(--ink);color:#fff;margin-top:clamp(88px,11vw,160px);paddin
   html{scroll-behavior:auto}
   .js [data-rise],.js .hero [data-in],.js .pano,.js .hero__phone{opacity:1;transform:none;translate:none;animation:none;transition:none}
   .sticker,.marquee__track,.hot span::before,.pano__hint svg{animation:none}
-  .mod__bar i,.mod__room{transition:none}
+  .mod__bar i,.mod__phone .phone__screen img{transition:none}
 }
 
 /* tablet */
@@ -363,7 +363,6 @@ footer{background:var(--ink);color:#fff;margin-top:clamp(88px,11vw,160px);paddin
   .types__visual{min-height:440px}
   .say{padding-bottom:150px}
   .tour__frame{margin:0 8px;height:max(520px,78svh)}
-  .mod__status{top:12px;left:12px;font-size:.8125rem}
   .say__pin{width:130px;right:-20px;bottom:-30px}
   .get__copy{margin:16px}
   .foot{grid-template-columns:1fr}
@@ -447,31 +446,37 @@ footer{background:var(--ink);color:#fff;margin-top:clamp(88px,11vw,160px);paddin
         <li class="step" data-rise style="--d:2">
           <span class="step__n" aria-hidden="true">3</span>
           <h3>Go live</h3>
-          <p>Upload in the background. The <a href="#moderation">Auto Moderation Pipeline</a> checks every photo, then you get an email when the tour is live.</p>
+          <p>Upload in the background. The <a href="#moderation">Auto Moderation Pipeline</a> takes it from there, and you get an email when the tour is live.</p>
           <figure class="phone"><div class="phone__screen"><img src="img/upload-ai.webp" width="718" height="1448" loading="lazy" alt="Upload to GoThru dialog with AI auto label switched on"></div></figure>
         </li>
       </ol>
     </div>
   </section>
 
-  <!-- AUTO MODERATION PIPELINE: every upload from the app goes through it -->
+  <!-- AUTO MODERATION PIPELINE: the app's real flow, from a new tour to a live link -->
   <section class="sec" id="moderation" aria-labelledby="mod-h" style="padding-top:0">
     <div class="wrap mod">
       <div>
-        <h2 id="mod-h" class="h2" data-rise>Checked<br>for you.</h2>
-        <p class="lead" data-rise style="--d:1">Every tour you upload from the app runs through the GoThru Auto Moderation Pipeline on its way to your tour link or Google Maps.</p>
+        <h2 id="mod-h" class="h2" data-rise>It runs<br>itself.</h2>
+        <p class="lead" data-rise style="--d:1">The GoThru Auto Moderation Pipeline takes a tour from your phone to a live link. Photos connect themselves, AI names the rooms and the upload runs in the background.</p>
         <ol class="mod__list" data-rise style="--d:2">
-          <li aria-current="step" data-status="Received · 12 photos with GPS"><button type="button"><i class="mod__ico" aria-hidden="true"></i><b>Received</b><small>Photos arrive from the background upload with their location and connections.</small></button></li>
-          <li data-status="Privacy · faces and plates blurred"><button type="button"><i class="mod__ico" aria-hidden="true"></i><b>Privacy</b><small>Faces and licence plates are found and blurred by AI.</small></button></li>
-          <li data-status="Quality · full 360, level horizon"><button type="button"><i class="mod__ico" aria-hidden="true"></i><b>Quality</b><small>Each photo is checked for a full 360, a level horizon and a location.</small></button></li>
-          <li data-status="AI label · Bedroom"><button type="button"><i class="mod__ico" aria-hidden="true"></i><b>Room labels</b><small>Real Estate photos are named by room, so buyers always know where they are.</small></button></li>
-          <li data-status="Live · email sent"><button type="button"><i class="mod__ico" aria-hidden="true"></i><b>Live</b><small>The tour goes to its own link or to Street View, and you get an email.</small></button></li>
+          <li aria-current="step"><button type="button"><i class="mod__ico" aria-hidden="true"></i><b>Create</b><small>Name the tour and pick Auto Connect, which works for most indoor tours.</small></button></li>
+          <li><button type="button"><i class="mod__ico" aria-hidden="true"></i><b>Add photos</b><small>From your 360 camera over Wi-Fi, or from the phone's gallery.</small></button></li>
+          <li><button type="button"><i class="mod__ico" aria-hidden="true"></i><b>Connect</b><small>Auto Connect links photos shot 3 to 5 m apart. Fix any pair by tapping its target.</small></button></li>
+          <li><button type="button"><i class="mod__ico" aria-hidden="true"></i><b>Room labels</b><small>Switch on AI auto label and every room is named for buyers.</small></button></li>
+          <li><button type="button"><i class="mod__ico" aria-hidden="true"></i><b>Upload</b><small>Runs in the background. You get an email when it is done.</small></button></li>
+          <li><button type="button"><i class="mod__ico" aria-hidden="true"></i><b>Live</b><small>The tour opens at its own link, every room already labelled.</small></button></li>
         </ol>
       </div>
-      <figure class="mod__shot" id="mod-shot" data-stage="0" data-rise style="--d:1">
-        <img src="img/pipeline-bedroom.webp" width="3072" height="638" loading="lazy" alt="A bedroom photo on its way through the pipeline">
-        <span class="mod__status"><i class="dot" aria-hidden="true"></i><span id="mod-status">Received · 12 photos with GPS</span></span>
-        <span class="mod__room" aria-hidden="true">Bedroom</span>
+      <figure class="mod__shot" id="mod-shot" data-rise style="--d:1">
+        <div class="phone mod__phone"><div class="phone__screen">
+          <img class="is-on" src="img/pipeline-1.webp" width="738" height="1490" loading="lazy" alt="Create Real Estate Tour screen with Auto Connect Tour selected">
+          <img src="img/pipeline-2.webp" width="738" height="1490" loading="lazy" alt="A tour with 9 photos added, ready to connect">
+          <img src="img/pipeline-3.webp" width="738" height="1490" loading="lazy" alt="Add Connection screen: pick the photo to connect to">
+          <img src="img/pipeline-4.webp" width="738" height="1490" loading="lazy" alt="Upload to GoThru dialog with Apply upload with AI auto label switched on">
+          <img src="img/pipeline-5.webp" width="738" height="1490" loading="lazy" alt="The tour uploading, panorama 1 of 4">
+          <img src="img/pipeline-6.webp" width="738" height="1490" loading="lazy" alt="The live tour at tourmkr.com, with the room labelled Entryway">
+        </div></div>
         <span class="mod__bar" aria-hidden="true"><i></i></span>
       </figure>
     </div>
@@ -599,7 +604,7 @@ footer{background:var(--ink);color:#fff;margin-top:clamp(88px,11vw,160px);paddin
       </div>
       <div class="faq__list">
         <div class="q" data-open data-rise><button aria-expanded="true" aria-controls="a1" id="q1">Can I publish without a GoThru account?<span class="pm" aria-hidden="true"></span></button><div class="q__a" id="a1" role="region" aria-labelledby="q1"><div><p>No. Publishing goes through your GoThru account, so the app asks you to connect one first. You can import your existing GoThru tours the same way.</p></div></div></div>
-        <div class="q" data-rise style="--d:1"><button aria-expanded="false" aria-controls="a7" id="q7">What does the Auto Moderation Pipeline check?<span class="pm" aria-hidden="true"></span></button><div class="q__a" id="a7" role="region" aria-labelledby="q7"><div><p>Every upload is checked on its way to your tour link or Street View: faces and licence plates are blurred, each photo is checked for a full 360, a level horizon and a location, and Real Estate photos are labelled by room. You get an email when the tour is live.</p></div></div></div>
+        <div class="q" data-rise style="--d:1"><button aria-expanded="false" aria-controls="a7" id="q7">What does the Auto Moderation Pipeline do?<span class="pm" aria-hidden="true"></span></button><div class="q__a" id="a7" role="region" aria-labelledby="q7"><div><p>It takes a tour from your phone to a live link with no extra steps. Auto Connect links photos shot 3 to 5 m apart, AI auto label names every room and the upload runs in the background. You get an email when the tour is live, and you can still edit it later in your GoThru listing.</p></div></div></div>
         <div class="q" data-rise style="--d:1"><button aria-expanded="false" aria-controls="a2" id="q2">Can a tour have more than one floor?<span class="pm" aria-hidden="true"></span></button><div class="q__a" id="a2" role="region" aria-labelledby="q2"><div><p>Yes. Add, rename, remove and sort levels, and move photos between them. Each level is published to Street View as its own floor.</p></div></div></div>
         <div class="q" data-rise style="--d:2"><button aria-expanded="false" aria-controls="a3" id="q3">What is the difference between the two tour types?<span class="pm" aria-hidden="true"></span></button><div class="q__a" id="a3" role="region" aria-labelledby="q3"><div><p>A Real Estate tour is hosted by GoThru and shared with its own link; it has nothing to do with Google. A Google Business tour is tied to an address on Google Maps and published to Street View.</p></div></div></div>
         <div class="q" data-rise style="--d:3"><button aria-expanded="false" aria-controls="a4" id="q4">Can I check the tour before publishing?<span class="pm" aria-hidden="true"></span></button><div class="q__a" id="a4" role="region" aria-labelledby="q4"><div><p>Yes. Preview lets you walk from photo to photo along the connections you made, so you can fix a wrong turn before anyone sees it.</p></div></div></div>
@@ -728,13 +733,14 @@ footer{background:var(--ink);color:#fff;margin-top:clamp(88px,11vw,160px);paddin
   });
 
   // auto moderation pipeline: steps through its stages while on screen
-  const shot=document.getElementById('mod-shot'), modStatus=document.getElementById('mod-status'), stages=[...document.querySelectorAll('.mod__list li')];
+  const shot=document.getElementById('mod-shot'), screens=[...shot.querySelectorAll('img')], stages=[...document.querySelectorAll('.mod__list li')];
   let stageAt=0, stageTimer=0, autoStage=!reduce;
   function stage(i){
-    stageAt=i; shot.dataset.stage=i; shot.style.setProperty('--p',(i+1)/stages.length); modStatus.textContent=stages[i].dataset.status;
+    stageAt=i; shot.style.setProperty('--p',(i+1)/stages.length);
+    screens.forEach((im,j)=>im.classList.toggle('is-on',j===i));
     stages.forEach((li,j)=>{li.classList.toggle('is-done',j<i||(i===stages.length-1&&j===i)); j===i?li.setAttribute('aria-current','step'):li.removeAttribute('aria-current')});
   }
-  const nextStage=()=>{stage((stageAt+1)%stages.length); stageTimer=setTimeout(nextStage,stageAt===stages.length-1?3600:2000)};
+  const nextStage=()=>{stage((stageAt+1)%stages.length); stageTimer=setTimeout(nextStage,stageAt===stages.length-1?3600:2200)};
   stages.forEach((li,i)=>li.querySelector('button').addEventListener('click',()=>{autoStage=false; clearTimeout(stageTimer); stage(i)}));
   new IntersectionObserver(([en])=>{clearTimeout(stageTimer); if(en.isIntersecting&&autoStage) stageTimer=setTimeout(nextStage,1400)},{threshold:.4}).observe(shot);
   stage(0);
