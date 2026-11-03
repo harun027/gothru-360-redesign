@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>GoThru 360 Virtual Tour Maker: 360 tours made on your phone</title>
-<meta name="description" content="Shoot 360 photos, connect them on your phone and publish the tour to Google Street View or share it as a hosted link. GoThru 360 Virtual Tour Maker for iPhone and Android.">
+<title>GoThru 360 Virtual Tour Maker: real estate 360 tours made on your phone</title>
+<meta name="description" content="Shoot every room in 360, connect the photos on your phone and send buyers a hosted tour link, checked by the GoThru Auto Moderation Pipeline. GoThru 360 Virtual Tour Maker for iPhone and Android.">
 <meta name="theme-color" content="#fbf6ee">
 <meta name="robots" content="noindex, nofollow">
 <link rel="icon" href="img/brand/icon.png">
@@ -267,6 +267,37 @@ footer{background:var(--ink);color:#fff;margin-top:clamp(88px,11vw,160px);paddin
 .legal span:last-child{max-width:70ch}
 .legal a{text-decoration:underline}
 
+/* auto moderation pipeline */
+.mod{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:clamp(32px,5vw,80px);align-items:center}
+.mod .lead{margin-top:20px}
+.mod__list{list-style:none;margin:28px 0 0;padding:0;display:grid;gap:4px}
+.mod__list button{all:unset;box-sizing:border-box;width:100%;display:grid;grid-template-columns:40px 1fr;gap:2px 16px;align-items:center;padding:14px 16px;border-radius:var(--r-md);cursor:pointer;transition:background-color .25s ease,transform .16s var(--ease-out)}
+.mod__list button:active{transform:scale(.98)}
+.mod__list button:focus-visible{outline:3px solid var(--blue);outline-offset:2px}
+.mod__list b{font:700 1.125rem/1.3 var(--text)}
+.mod__list small{grid-column:2;color:var(--ink-2);font-size:1rem;line-height:1.45}
+.mod__list [aria-current] button{background:#fff}
+@media (hover:hover){.mod__list button:hover{background:rgba(255,255,255,.6)}}
+.mod__ico{grid-row:span 2;align-self:start;position:relative;width:40px;height:40px;border-radius:50%;background:#fff;box-shadow:inset 0 0 0 2px #e6dfd2;transition:background-color .3s ease,box-shadow .3s ease}
+.mod__ico::after{content:"";position:absolute;left:14px;top:10px;width:8px;height:15px;border:solid #fff;border-width:0 3px 3px 0;transform:rotate(45deg) scale(.6);opacity:0;transition:opacity .2s ease,transform .3s var(--ease-out)}
+.mod__list [aria-current] .mod__ico{background:var(--yellow);box-shadow:none}
+.mod__list .is-done .mod__ico{background:var(--teal-d);box-shadow:none}
+.mod__list .is-done .mod__ico::after{opacity:1;transform:rotate(45deg)}
+.mod__shot{position:relative;aspect-ratio:4/3;border-radius:var(--r-xl);overflow:hidden;background:#2b241c}
+.mod__shot img{width:100%;height:100%;object-fit:cover;object-position:0 50%}
+.mod__status{position:absolute;top:20px;left:20px;display:inline-flex;align-items:center;gap:10px;padding:12px 16px;border-radius:999px;background:#fff;font:700 .9375rem/1 var(--text);box-shadow:0 14px 30px -14px rgba(22,24,29,.5)}
+.mod__room{position:absolute;left:30%;top:52%;padding:10px 16px;border-radius:999px;background:var(--yellow);font:800 1.125rem/1 var(--display);letter-spacing:-.01em;opacity:0;transform:translateY(10px) scale(.96);transition:opacity .3s ease,transform .45s var(--ease-out)}
+.mod__shot[data-stage="3"] .mod__room,.mod__shot[data-stage="4"] .mod__room{opacity:1;transform:none}
+.mod__bar{position:absolute;left:20px;right:20px;bottom:20px;height:6px;border-radius:6px;background:rgba(255,255,255,.35);overflow:hidden}
+.mod__bar i{display:block;height:100%;background:#fff;transform:scaleX(var(--p,.2));transform-origin:left;transition:transform .6s var(--ease-out)}
+
+/* real estate tour */
+.tour{padding-bottom:clamp(88px,11vw,160px)}
+.tour__frame{position:relative;margin:0 12px;height:clamp(480px,76svh,820px);border-radius:var(--r-xl);overflow:hidden;background:#2b241c}
+.tour__frame>img,.tour__frame iframe{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;border:0}
+.tour__start{position:absolute;inset:auto 0 0 0;display:flex;flex-wrap:wrap;align-items:center;gap:12px 24px;padding:clamp(24px,4vw,48px);background:linear-gradient(0deg,rgba(16,13,10,.7) 0%,rgba(16,13,10,0) 100%)}
+.tour__start .btn{padding:18px 26px;font-size:1.0625rem}
+.tour__out{color:#fff;font-weight:700;text-underline-offset:4px}
 /* reveal (content stays visible without JS) */
 .js [data-rise]{opacity:0;transform:translateY(28px);transition:opacity .8s var(--ease-out),transform .8s var(--ease-out);transition-delay:calc(var(--d,0)*80ms)}
 .js [data-rise].in{opacity:1;transform:none}
@@ -280,6 +311,7 @@ footer{background:var(--ink);color:#fff;margin-top:clamp(88px,11vw,160px);paddin
   html{scroll-behavior:auto}
   .js [data-rise],.js .hero [data-in],.js .pano,.js .hero__phone{opacity:1;transform:none;translate:none;animation:none;transition:none}
   .sticker,.marquee__track,.hot span::before,.pano__hint svg{animation:none}
+  .mod__bar i,.mod__room{transition:none}
 }
 
 /* tablet */
@@ -299,6 +331,7 @@ footer{background:var(--ink);color:#fff;margin-top:clamp(88px,11vw,160px);paddin
   .c-prev,.c-ai{grid-column:span 1}
   .types{grid-template-columns:1fr}
   .faq{grid-template-columns:1fr}
+  .mod{grid-template-columns:1fr}
   .get{grid-template-columns:1fr}
   .get__phone{width:min(300px,60%);margin-bottom:-30%}
   .foot{grid-template-columns:1fr 1fr}
@@ -329,6 +362,8 @@ footer{background:var(--ink);color:#fff;margin-top:clamp(88px,11vw,160px);paddin
   .tabs button{flex:1;padding:14px 10px;font-size:.9375rem}
   .types__visual{min-height:440px}
   .say{padding-bottom:150px}
+  .tour__frame{margin:0 8px;height:max(520px,78svh)}
+  .mod__status{top:12px;left:12px;font-size:.8125rem}
   .say__pin{width:130px;right:-20px;bottom:-30px}
   .get__copy{margin:16px}
   .foot{grid-template-columns:1fr}
@@ -341,9 +376,9 @@ footer{background:var(--ink);color:#fff;margin-top:clamp(88px,11vw,160px);paddin
   <a class="nav__logo" href="#top" aria-label="GoThru 360 Virtual Tour Maker, home"><img src="img/brand/logo-light.webp" width="724" height="202" alt="GoThru 360 Virtual Tour Maker, powered by GoThru"></a>
   <ul>
     <li><a href="#how">How it works</a></li>
-    <li><a href="#try">Try it</a></li>
+    <li><a href="#moderation">Moderation</a></li>
     <li><a href="#features">Features</a></li>
-    <li><a href="#types">Tour types</a></li>
+    <li><a href="#tour">Real Estate tour</a></li>
     <li><a href="#faq">FAQ</a></li>
   </ul>
   <a class="btn btn--ink js-store" href="https://play.google.com/store/apps/details?id=com.gothru.streeteditor">Get the app</a>
@@ -352,25 +387,25 @@ footer{background:var(--ink);color:#fff;margin-top:clamp(88px,11vw,160px);paddin
 <main id="top">
   <!-- HERO: a live 360 view the visitor can look around in -->
   <section class="hero" aria-labelledby="hero-h">
-    <div class="pano" id="pano" tabindex="0" role="group" aria-roledescription="360 view" aria-label="360 degree view of a demo panorama. Drag, or use the left and right arrow keys, to look around.">
+    <div class="pano" id="pano" tabindex="0" role="group" aria-roledescription="360 view" aria-label="360 degree view of a demo home. Drag, or use the left and right arrow keys, to look around.">
       <div class="pano__track" id="pano-track">
         <div class="pano__copy">
-          <img src="img/pano-laon.webp" width="3840" height="796" alt="" draggable="false" fetchpriority="high">
-          <button class="hot" type="button" style="--x:.004;--y:.8" data-x=".004"><span>2</span><em>Photo 2 · Nave</em></button>
-          <button class="hot" type="button" style="--x:.262;--y:.66" data-x=".262"><span>3</span><em>Photo 3 · Left aisle</em></button>
-          <button class="hot" type="button" style="--x:.728;--y:.66" data-x=".728"><span>4</span><em>Photo 4 · Right aisle</em></button>
+          <img src="img/pano-home.webp" width="3840" height="797" alt="" draggable="false" fetchpriority="high">
+          <button class="hot" type="button" style="--x:.44;--y:.6" data-x=".44"><span>2</span><em>Photo 2 · Bedroom</em></button>
+          <button class="hot" type="button" style="--x:.81;--y:.62" data-x=".81"><span>3</span><em>Photo 3 · Dining</em></button>
+          <button class="hot" type="button" style="--x:.92;--y:.56" data-x=".92"><span>4</span><em>Photo 4 · Kitchen</em></button>
         </div>
       </div>
       <div class="pano__scrim" aria-hidden="true"></div>
       <span class="pano__hint glass" id="pano-hint" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 13V5.5a1.5 1.5 0 0 1 3 0V12m0-1.5v-2a1.5 1.5 0 0 1 3 0V12m0-1a1.5 1.5 0 0 1 3 0v1m0 0a1.5 1.5 0 0 1 3 0v3a6 6 0 0 1-6 6h-2a6 6 0 0 1-5-2.7L3.4 15a1.6 1.6 0 0 1 2.5-2L8 15"/></svg>Drag to look around</span>
       <div class="hud glass" aria-hidden="true">
-        <div class="hud__disc"><img id="hud-img" src="img/lookdown-laon.webp" width="900" height="900" alt=""><i class="hud__cone"></i><i class="hud__dot"></i></div>
-        <span>You are at photo 1<b id="hud-label">Facing the choir</b></span>
+        <div class="hud__disc"><img id="hud-img" src="img/lookdown-home.webp" width="900" height="900" alt=""><i class="hud__cone"></i><i class="hud__dot"></i></div>
+        <span>You are at photo 1<b id="hud-label">Facing the bed</b></span>
       </div>
       <div class="hero__copy">
         <span class="hero__badge glass" data-in><img src="img/brand/icon.webp" width="255" height="255" alt="">GoThru 360 Virtual Tour Maker</span>
-        <h1 id="hero-h" class="condensed" data-in style="--d:1"><span>Make any place</span><span class="c-yellow">walkable.</span></h1>
-        <p class="hero__lead" data-in style="--d:2">You are standing in a 360 tour right now. Shoot photos like this, connect them on your phone, and publish to Google Street View or your own tour link.</p>
+        <h1 id="hero-h" class="condensed" data-in style="--d:1"><span>Make any home</span><span class="c-yellow">walkable.</span></h1>
+        <p class="hero__lead" data-in style="--d:2">You are standing in a 360 home tour right now. Shoot every room like this, connect the photos on your phone and send buyers one tour link.</p>
         <div class="hero__cta" data-in style="--d:3">
           <a class="btn btn--white store" href="https://apps.apple.com/id/app/gothru-street-editor/id1551756569"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.152 6.896c-.948 0-2.415-1.078-3.96-1.040-2.040.027-3.910 1.183-4.961 3.014-2.117 3.675-.546 9.103 1.519 12.090 1.013 1.454 2.208 3.090 3.792 3.039 1.520-.065 2.090-.987 3.935-.987 1.831 0 2.350.987 3.960.948 1.637-.026 2.676-1.480 3.676-2.948 1.156-1.688 1.636-3.325 1.662-3.415-.039-.013-3.182-1.221-3.220-4.857-.026-3.040 2.480-4.494 2.597-4.559-1.429-2.090-3.623-2.324-4.390-2.376-2-.156-3.675 1.090-4.610 1.090zM15.530 3.830c.843-1.012 1.400-2.427 1.245-3.830-1.207.052-2.662.805-3.532 1.818-.780.896-1.454 2.338-1.273 3.714 1.338.104 2.715-.688 3.559-1.701"/></svg><span><small>Download on the</small><b>App Store</b></span></a>
           <a class="btn btn--white store" href="https://play.google.com/store/apps/details?id=com.gothru.streeteditor"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M22.018 13.298l-3.919 2.218-3.515-3.493 3.543-3.521 3.891 2.202a1.49 1.49 0 0 1 0 2.594zM1.337.924a1.486 1.486 0 0 0-.112.568v21.017c0 .217.045.419.124.6l11.155-11.087L1.337.924zm12.207 10.065l3.258-3.238L3.45.195a1.466 1.466 0 0 0-.946-.179l11.04 10.973zm0 2.067l-11 10.933c.298.036.612-.016.906-.183l13.324-7.54-3.23-3.21z"/></svg><span><small>Get it on</small><b>Google Play</b></span></a>
@@ -384,8 +419,8 @@ footer{background:var(--ink);color:#fff;margin-top:clamp(88px,11vw,160px);paddin
 
   <div class="marquee" aria-hidden="true">
     <div class="marquee__track">
-      <span>Real Estate tours <img src="img/brand/icon.webp" alt=""> Google Business tours <img src="img/brand/icon.webp" alt=""> Street View publishing <img src="img/brand/icon.webp" alt=""> AI room labels <img src="img/brand/icon.webp" alt=""> Levels <img src="img/brand/icon.webp" alt=""> Auto Connect <img src="img/brand/icon.webp" alt=""></span>
-      <span>Real Estate tours <img src="img/brand/icon.webp" alt=""> Google Business tours <img src="img/brand/icon.webp" alt=""> Street View publishing <img src="img/brand/icon.webp" alt=""> AI room labels <img src="img/brand/icon.webp" alt=""> Levels <img src="img/brand/icon.webp" alt=""> Auto Connect <img src="img/brand/icon.webp" alt=""></span>
+      <span>Real Estate tours <img src="img/brand/icon.webp" alt=""> Google Business tours <img src="img/brand/icon.webp" alt=""> Auto Moderation Pipeline <img src="img/brand/icon.webp" alt=""> AI room labels <img src="img/brand/icon.webp" alt=""> Levels <img src="img/brand/icon.webp" alt=""> Auto Connect <img src="img/brand/icon.webp" alt=""></span>
+      <span>Real Estate tours <img src="img/brand/icon.webp" alt=""> Google Business tours <img src="img/brand/icon.webp" alt=""> Auto Moderation Pipeline <img src="img/brand/icon.webp" alt=""> AI room labels <img src="img/brand/icon.webp" alt=""> Levels <img src="img/brand/icon.webp" alt=""> Auto Connect <img src="img/brand/icon.webp" alt=""></span>
     </div>
   </div>
 
@@ -400,7 +435,7 @@ footer{background:var(--ink);color:#fff;margin-top:clamp(88px,11vw,160px);paddin
         <li class="step" data-rise>
           <span class="step__n" aria-hidden="true">1</span>
           <h3>Shoot</h3>
-          <p>Take 360 photos 3 to 5 m apart with a clear line of sight, or import a tour from your GoThru account.</p>
+          <p>Take a 360 photo in every room, 3 to 5 m apart with a clear line of sight, or import a tour from your GoThru account.</p>
           <figure class="phone"><div class="phone__screen"><img src="img/create-choice.webp" width="718" height="1448" loading="lazy" alt="Choose a tour type: Create Real Estate Tour or Create Google Business Tour"></div></figure>
         </li>
         <li class="step" data-rise style="--d:1">
@@ -412,10 +447,33 @@ footer{background:var(--ink);color:#fff;margin-top:clamp(88px,11vw,160px);paddin
         <li class="step" data-rise style="--d:2">
           <span class="step__n" aria-hidden="true">3</span>
           <h3>Go live</h3>
-          <p>Upload to GoThru in the background. You get an email when your tour is on Google Maps or at its own link.</p>
+          <p>Upload in the background. The <a href="#moderation">Auto Moderation Pipeline</a> checks every photo, then you get an email when the tour is live.</p>
           <figure class="phone"><div class="phone__screen"><img src="img/upload-ai.webp" width="718" height="1448" loading="lazy" alt="Upload to GoThru dialog with AI auto label switched on"></div></figure>
         </li>
       </ol>
+    </div>
+  </section>
+
+  <!-- AUTO MODERATION PIPELINE: every upload from the app goes through it -->
+  <section class="sec" id="moderation" aria-labelledby="mod-h" style="padding-top:0">
+    <div class="wrap mod">
+      <div>
+        <h2 id="mod-h" class="h2" data-rise>Checked<br>for you.</h2>
+        <p class="lead" data-rise style="--d:1">Every tour you upload from the app runs through the GoThru Auto Moderation Pipeline on its way to your tour link or Google Maps.</p>
+        <ol class="mod__list" data-rise style="--d:2">
+          <li aria-current="step" data-status="Received · 12 photos with GPS"><button type="button"><i class="mod__ico" aria-hidden="true"></i><b>Received</b><small>Photos arrive from the background upload with their location and connections.</small></button></li>
+          <li data-status="Privacy · faces and plates blurred"><button type="button"><i class="mod__ico" aria-hidden="true"></i><b>Privacy</b><small>Faces and licence plates are found and blurred by AI.</small></button></li>
+          <li data-status="Quality · full 360, level horizon"><button type="button"><i class="mod__ico" aria-hidden="true"></i><b>Quality</b><small>Each photo is checked for a full 360, a level horizon and a location.</small></button></li>
+          <li data-status="AI label · Bedroom"><button type="button"><i class="mod__ico" aria-hidden="true"></i><b>Room labels</b><small>Real Estate photos are named by room, so buyers always know where they are.</small></button></li>
+          <li data-status="Live · email sent"><button type="button"><i class="mod__ico" aria-hidden="true"></i><b>Live</b><small>The tour goes to its own link or to Street View, and you get an email.</small></button></li>
+        </ol>
+      </div>
+      <figure class="mod__shot" id="mod-shot" data-stage="0" data-rise style="--d:1">
+        <img src="img/tour-bedroom.webp" width="3072" height="638" loading="lazy" alt="A bedroom photo on its way through the pipeline">
+        <span class="mod__status"><i class="dot" aria-hidden="true"></i><span id="mod-status">Received · 12 photos with GPS</span></span>
+        <span class="mod__room" aria-hidden="true">Bedroom</span>
+        <span class="mod__bar" aria-hidden="true"><i></i></span>
+      </figure>
     </div>
   </section>
 
@@ -423,8 +481,8 @@ footer{background:var(--ink);color:#fff;margin-top:clamp(88px,11vw,160px);paddin
   <section class="try" id="try" aria-labelledby="try-h">
     <div>
       <h2 id="try-h" class="h2" data-rise>Line it up.<br><span class="c-yellow">Try it here.</span></h2>
-      <p class="lead" data-rise style="--d:1">Each 360 photo is shown from above, floor in the middle. Drag the top photo until the aisle runs along the blue line. That is a connection.</p>
-      <p class="try__status" aria-live="polite" data-rise style="--d:2"><i></i><span id="status">Drag photo 1 to line up the aisle.</span></p>
+      <p class="lead" data-rise style="--d:1">Each 360 photo is shown from above, floor in the middle. Drag the top photo until the carpet runs along the blue line. That is a connection.</p>
+      <p class="try__status" aria-live="polite" data-rise style="--d:2"><i></i><span id="status">Drag photo 1 to line up the carpet.</span></p>
       <div class="try__ctrls" data-rise style="--d:3">
         <button class="btn btn--paper" id="switch" type="button">Switch image</button>
         <button class="btn btn--paper" id="reset" type="button">Start over</button>
@@ -443,8 +501,8 @@ footer{background:var(--ink);color:#fff;margin-top:clamp(88px,11vw,160px);paddin
         <div class="app__dist"><div><label for="dist">Distance</label><output id="dist-val" for="dist">3 m</output></div><input type="range" id="dist" min="1" max="12" value="3"></div>
         <div class="app__plane" id="plane">
           <div class="app__line" aria-hidden="true"></div>
-          <div class="disc is-top"><img src="img/lookdown-laon.webp" width="900" height="900" alt="Photo 1 seen from above"><span class="node" aria-hidden="true">1</span></div>
-          <div class="disc"><img src="img/lookdown-laon.webp" width="900" height="900" alt="Photo 2 seen from above"><span class="node" aria-hidden="true">2</span></div>
+          <div class="disc is-top"><img src="img/lookdown-lounge.webp" width="900" height="900" alt="Photo 1 of a living room, seen from above"><span class="node" aria-hidden="true">1</span></div>
+          <div class="disc"><img src="img/lookdown-lounge.webp" width="900" height="900" alt="Photo 2 of a living room, seen from above"><span class="node" aria-hidden="true">2</span></div>
         </div>
         <p class="app__hint">Drag each image so the path lines up on the blue line.</p>
         <button class="btn app__save" id="save" type="button" disabled>Save Connection</button>
@@ -527,8 +585,8 @@ footer{background:var(--ink);color:#fff;margin-top:clamp(88px,11vw,160px);paddin
 
   <!-- STATEMENT -->
   <section class="say" aria-labelledby="say-h">
-    <h2 id="say-h" class="condensed" data-rise><span>Any Gmail.</span> <span>No badge.</span> <span>Straight to Street&nbsp;View.</span></h2>
-    <p data-rise style="--d:1">You do not need to be a Google Trusted Photographer. Connect a Google account and publish.</p>
+    <h2 id="say-h" class="condensed" data-rise><span>Every room.</span> <span>One link.</span> <span>Walk it first.</span></h2>
+    <p data-rise style="--d:1">Paste the tour link into the listing, a message or your website. Buyers walk the home before they book a visit.</p>
     <img class="say__pin" src="img/brand/icon.webp" width="255" height="255" alt="" loading="lazy">
   </section>
 
@@ -541,11 +599,27 @@ footer{background:var(--ink);color:#fff;margin-top:clamp(88px,11vw,160px);paddin
       </div>
       <div class="faq__list">
         <div class="q" data-open data-rise><button aria-expanded="true" aria-controls="a1" id="q1">Can I publish without a GoThru account?<span class="pm" aria-hidden="true"></span></button><div class="q__a" id="a1" role="region" aria-labelledby="q1"><div><p>No. Publishing goes through your GoThru account, so the app asks you to connect one first. You can import your existing GoThru tours the same way.</p></div></div></div>
+        <div class="q" data-rise style="--d:1"><button aria-expanded="false" aria-controls="a7" id="q7">What does the Auto Moderation Pipeline check?<span class="pm" aria-hidden="true"></span></button><div class="q__a" id="a7" role="region" aria-labelledby="q7"><div><p>Every upload is checked on its way to your tour link or Street View: faces and licence plates are blurred, each photo is checked for a full 360, a level horizon and a location, and Real Estate photos are labelled by room. You get an email when the tour is live.</p></div></div></div>
         <div class="q" data-rise style="--d:1"><button aria-expanded="false" aria-controls="a2" id="q2">Can a tour have more than one floor?<span class="pm" aria-hidden="true"></span></button><div class="q__a" id="a2" role="region" aria-labelledby="q2"><div><p>Yes. Add, rename, remove and sort levels, and move photos between them. Each level is published to Street View as its own floor.</p></div></div></div>
         <div class="q" data-rise style="--d:2"><button aria-expanded="false" aria-controls="a3" id="q3">What is the difference between the two tour types?<span class="pm" aria-hidden="true"></span></button><div class="q__a" id="a3" role="region" aria-labelledby="q3"><div><p>A Real Estate tour is hosted by GoThru and shared with its own link; it has nothing to do with Google. A Google Business tour is tied to an address on Google Maps and published to Street View.</p></div></div></div>
         <div class="q" data-rise style="--d:3"><button aria-expanded="false" aria-controls="a4" id="q4">Can I check the tour before publishing?<span class="pm" aria-hidden="true"></span></button><div class="q__a" id="a4" role="region" aria-labelledby="q4"><div><p>Yes. Preview lets you walk from photo to photo along the connections you made, so you can fix a wrong turn before anyone sees it.</p></div></div></div>
         <div class="q" data-rise style="--d:4"><button aria-expanded="false" aria-controls="a5" id="q5">Do I need to be a Google Trusted Photographer?<span class="pm" aria-hidden="true"></span></button><div class="q__a" id="a5" role="region" aria-labelledby="q5"><div><p>No. Anyone with a Gmail account can connect it and publish photos to Street View.</p></div></div></div>
         <div class="q" data-rise style="--d:5"><button aria-expanded="false" aria-controls="a6" id="q6">Do I have to publish to Google at all?<span class="pm" aria-hidden="true"></span></button><div class="q__a" id="a6" role="region" aria-labelledby="q6"><div><p>No. Make a Real Estate tour instead and share its GoThru link anywhere: a listing, a message, a website.</p></div></div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- REAL ESTATE TOUR: a live GoThru tour, loaded on request so it never traps scrolling -->
+  <section class="tour" id="tour" aria-labelledby="tour-h">
+    <div class="wrap sec__head">
+      <h2 id="tour-h" class="h2" data-rise>Walk a real<br>listing tour.</h2>
+      <p class="lead" data-rise style="--d:1">A Real Estate tour hosted by GoThru, exactly as buyers open it from the link. Start at the porch and walk through the house.</p>
+    </div>
+    <div class="tour__frame" id="tour-frame" data-rise>
+      <img src="img/realestate-tour-poster.webp" width="1920" height="1008" loading="lazy" alt="Front porch of the house in the GoThru tour Marketing Real Estate">
+      <div class="tour__start">
+        <button class="btn btn--white" id="tour-load" type="button" data-src="https://tourmkr.com/F1kw9NgwSv/34728666p&amp;292.89h&amp;90t"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5.5v13a1 1 0 0 0 1.5.86l11-6.5a1 1 0 0 0 0-1.72l-11-6.5A1 1 0 0 0 8 5.5z"/></svg>Walk this home in 360</button>
+        <a class="tour__out" href="https://tourmkr.com/F1kw9NgwSv/34728666p&amp;292.89h&amp;90t" target="_blank" rel="noopener">Open full screen</a>
       </div>
     </div>
   </section>
@@ -570,15 +644,15 @@ footer{background:var(--ink);color:#fff;margin-top:clamp(88px,11vw,160px);paddin
     <div class="foot">
       <div>
         <img class="foot__logo" src="img/brand/logo-dark.webp" width="724" height="202" alt="GoThru 360 Virtual Tour Maker, powered by GoThru" loading="lazy">
-        <p>Made by GoThru, the platform behind GoThru Moderator, for 360 photographers and the businesses they shoot.</p>
+        <p>Made by GoThru, the platform behind GoThru Moderator, for real estate agents and the 360 photographers who shoot for them.</p>
       </div>
-      <nav aria-label="Product"><h3>Product</h3><ul><li><a href="#how">How it works</a></li><li><a href="#try">Try the connector</a></li><li><a href="#features">Features</a></li><li><a href="#types">Tour types</a></li><li><a href="#faq">FAQ</a></li></ul></nav>
+      <nav aria-label="Product"><h3>Product</h3><ul><li><a href="#how">How it works</a></li><li><a href="#moderation">Auto Moderation</a></li><li><a href="#try">Try the connector</a></li><li><a href="#features">Features</a></li><li><a href="#types">Tour types</a></li><li><a href="#tour">Real Estate tour</a></li><li><a href="#faq">FAQ</a></li></ul></nav>
       <nav aria-label="Get the app"><h3>Get the app</h3><ul><li><a href="https://apps.apple.com/id/app/gothru-street-editor/id1551756569">App Store</a></li><li><a href="https://play.google.com/store/apps/details?id=com.gothru.streeteditor">Google Play</a></li><li><a href="https://gothru.co">gothru.co</a></li></ul></nav>
       <div><h3>Contact</h3><address>Toronto, Ontario, Canada<br><a href="tel:+18004612405">(800) 461-2405</a><br><a href="mailto:info@gothru.co">info@gothru.co</a><br><a href="mailto:support@gothru.co">support@gothru.co</a></address></div>
     </div>
     <div class="legal">
       <span>© 2026 GoThru Media Inc. All rights reserved.</span>
-      <span>Demo panorama: “Laon Cathedral Interior 360x180, Picardy, France” by Diliff, <a href="https://creativecommons.org/licenses/by-sa/3.0">CC BY-SA 3.0</a>, via <a href="https://commons.wikimedia.org/wiki/File:Laon_Cathedral_Interior_360x180,_Picardy,_France_-_Diliff.jpg">Wikimedia Commons</a>, shown from above.</span>
+      <span>Demo panoramas from <a href="https://polyhaven.com/hdris">Poly Haven</a>, <a href="https://creativecommons.org/publicdomain/zero/1.0/">CC0</a>: “Glasshouse Interior” by Dario Barresi; “Lythwood Lounge” and “Lythwood Room” by Greg Zaal. Real Estate tour: “Marketing Real Estate” on GoThru.</span>
     </div>
   </div>
 </footer>
@@ -593,51 +667,77 @@ footer{background:var(--ink);color:#fff;margin-top:clamp(88px,11vw,160px);paddin
   const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{rootMargin:'0px 0px -8% 0px'});
   document.querySelectorAll('[data-rise]').forEach(el=>io.observe(el));
 
-  // hero: drag-to-look 360 view, HUD disc follows the heading
-  const pano=document.getElementById('pano'), track=document.getElementById('pano-track'), first=track.firstElementChild;
-  const twin=first.cloneNode(true); twin.setAttribute('aria-hidden','true'); twin.querySelectorAll('button').forEach(b=>b.tabIndex=-1); track.append(twin);
-  const hud=document.getElementById('hud-img'), hudLabel=document.getElementById('hud-label'), hint=document.getElementById('pano-hint');
-  const hots=[...track.querySelectorAll('.hot')];
-  const names=[[0,'Facing the nave'],[.25,'Facing the left aisle'],[.5,'Facing the choir'],[.75,'Facing the right aisle'],[1,'Facing the nave']];
-  let W=0, x=0, vel=0, hold=null, tween=null, idleUntil=0, onScreen=true, last=performance.now();
-  const wrap=v=>W?((v%W)+W)%W:0;
-  const facing=()=>W?wrap(x+pano.clientWidth/2)/W:.5;   // 0..1 around the panorama
-  function render(){
-    x=wrap(x); track.style.transform=`translate3d(${-x}px,0,0)`;
-    const u=facing(); hud.style.transform=`rotate(${-(u-.5)*360}deg)`;
-    hudLabel.textContent=names.reduce((a,b)=>Math.abs(b[0]-u)<Math.abs(a[0]-u)?b:a)[1];
-    hots.forEach(h=>{const d=Math.abs(((+h.dataset.x-u+1.5)%1)-.5); h.classList.toggle('is-near',d<.06)});
-  }
-  function measure(){const keep=facing(); W=first.offsetWidth; x=keep*W-pano.clientWidth/2; render()}
-  const img=first.querySelector('img'); img.complete?measure():img.addEventListener('load',measure); addEventListener('resize',measure);
-  const quiet=()=>{hint.classList.add('is-gone'); idleUntil=performance.now()+5000};
-  function goTo(u){ // shortest way round to centre u
-    let target=u*W-pano.clientWidth/2, d=((target-x)%W+W*1.5)%W-W/2;
-    if(reduce){x+=d;render();return}
-    tween={from:x,d,t0:performance.now(),dur:1000};
-  }
-  pano.addEventListener('pointerdown',e=>{
-    if(e.target.closest('a,button')) return;
-    hold={px:e.clientX,t:e.timeStamp}; tween=null; vel=0; pano.classList.add('is-drag'); pano.setPointerCapture(e.pointerId); quiet();
-  });
-  pano.addEventListener('pointermove',e=>{ if(!hold) return;
-    const dx=e.clientX-hold.px, dt=Math.max(1,e.timeStamp-hold.t); x-=dx; vel=-dx/dt; hold={px:e.clientX,t:e.timeStamp}; render();
-  });
-  const release=()=>{if(hold){hold=null;pano.classList.remove('is-drag');quiet()}};
-  pano.addEventListener('pointerup',release); pano.addEventListener('pointercancel',release);
-  pano.addEventListener('keydown',e=>{const k={ArrowLeft:-1,ArrowRight:1}[e.key]; if(!k||e.target!==pano) return; e.preventDefault(); quiet(); goTo(wrap(x+pano.clientWidth/2+k*W/8)/W)});
-  track.addEventListener('click',e=>{const h=e.target.closest('.hot'); if(h){quiet(); goTo(+h.dataset.x)}});
-  new IntersectionObserver(([en])=>onScreen=en.isIntersecting).observe(pano);
-  (function loop(now){
-    const dt=Math.min(64,now-last); last=now;
-    if(W&&onScreen&&!hold){
-      if(tween){const k=Math.min(1,(now-tween.t0)/tween.dur), e=k<.5?4*k*k*k:1-Math.pow(-2*k+2,3)/2; x=tween.from+tween.d*e; if(k>=1)tween=null}
-      else if(Math.abs(vel)>.01){x+=vel*dt; vel*=Math.pow(.94,dt/16)}
-      else if(!reduce&&now>idleUntil){x+=dt*.012}   // slow drift, like turning your head
-      render();
+  // drag-to-look 360 strip
+  function viewer(pano,{hint,onTurn}={}){
+    const track=pano.querySelector('.pano__track'), first=track.firstElementChild;
+    const twin=first.cloneNode(true); twin.setAttribute('aria-hidden','true'); twin.querySelectorAll('button').forEach(b=>b.tabIndex=-1); track.append(twin);
+    const hots=[...track.querySelectorAll('.hot')];
+    let W=0, x=0, vel=0, hold=null, tween=null, idleUntil=0, onScreen=true, last=performance.now();
+    const wrap=v=>W?((v%W)+W)%W:0;
+    const facing=()=>W?wrap(x+pano.clientWidth/2)/W:.5;   // 0..1 around the panorama
+    function render(){
+      x=wrap(x); track.style.transform=`translate3d(${-x}px,0,0)`;
+      const u=facing(); if(onTurn) onTurn(u);
+      hots.forEach(h=>{const d=Math.abs(((+h.dataset.x-u+1.5)%1)-.5); h.classList.toggle('is-near',d<.06)});
     }
-    requestAnimationFrame(loop);
-  })(last);
+    function measure(){const keep=facing(); W=first.offsetWidth; x=keep*W-pano.clientWidth/2; render()}
+    const img=first.querySelector('img'); img.complete?measure():img.addEventListener('load',measure); addEventListener('resize',measure);
+    const quiet=()=>{if(hint) hint.classList.add('is-gone'); idleUntil=performance.now()+5000};
+    function goTo(u){ // shortest way round to centre u
+      let target=u*W-pano.clientWidth/2, d=((target-x)%W+W*1.5)%W-W/2;
+      if(reduce){x+=d;render();return}
+      tween={from:x,d,t0:performance.now(),dur:1000};
+    }
+    pano.addEventListener('pointerdown',e=>{
+      if(e.target.closest('a,button')) return;
+      hold={px:e.clientX,t:e.timeStamp}; tween=null; vel=0; pano.classList.add('is-drag'); pano.setPointerCapture(e.pointerId); quiet();
+    });
+    pano.addEventListener('pointermove',e=>{ if(!hold) return;
+      const dx=e.clientX-hold.px, dt=Math.max(1,e.timeStamp-hold.t); x-=dx; vel=-dx/dt; hold={px:e.clientX,t:e.timeStamp}; render();
+    });
+    const release=()=>{if(hold){hold=null;pano.classList.remove('is-drag');quiet()}};
+    pano.addEventListener('pointerup',release); pano.addEventListener('pointercancel',release);
+    pano.addEventListener('keydown',e=>{const k={ArrowLeft:-1,ArrowRight:1}[e.key]; if(!k||e.target!==pano) return; e.preventDefault(); quiet(); goTo(wrap(x+pano.clientWidth/2+k*W/8)/W)});
+    track.addEventListener('click',e=>{const h=e.target.closest('.hot'); if(h){quiet(); goTo(+h.dataset.x)}});
+    new IntersectionObserver(([en])=>onScreen=en.isIntersecting).observe(pano);
+    (function loop(now){
+      const dt=Math.min(64,now-last); last=now;
+      if(W&&onScreen&&!hold){
+        if(tween){const k=Math.min(1,(now-tween.t0)/tween.dur), e=k<.5?4*k*k*k:1-Math.pow(-2*k+2,3)/2; x=tween.from+tween.d*e; if(k>=1)tween=null}
+        else if(Math.abs(vel)>.01){x+=vel*dt; vel*=Math.pow(.94,dt/16)}
+        else if(!reduce&&now>idleUntil){x+=dt*.012}   // slow drift, like turning your head
+        render();
+      }
+      requestAnimationFrame(loop);
+    })(last);
+  }
+
+  // hero: the HUD disc follows the heading
+  const hud=document.getElementById('hud-img'), hudLabel=document.getElementById('hud-label');
+  const names=[[0,'Facing the kitchen'],[.2,'Facing the window seat'],[.44,'Facing the bed'],[.62,'Facing the valley'],[.81,'Facing the dining table'],[1,'Facing the kitchen']];
+  viewer(document.getElementById('pano'),{hint:document.getElementById('pano-hint'),onTurn:u=>{
+    hud.style.transform=`rotate(${-(u-.5)*360}deg)`;
+    hudLabel.textContent=names.reduce((a,b)=>Math.abs(b[0]-u)<Math.abs(a[0]-u)?b:a)[1];
+  }});
+
+  // real estate tour: the iframe only loads when asked for, so it never traps scrolling on phones
+  document.getElementById('tour-load').addEventListener('click',e=>{
+    const f=document.createElement('iframe');
+    f.src=e.currentTarget.dataset.src; f.title='GoThru Real Estate tour: Marketing Real Estate'; f.allow='fullscreen; accelerometer; gyroscope; xr-spatial-tracking';
+    document.getElementById('tour-frame').replaceChildren(f); f.focus();
+  });
+
+  // auto moderation pipeline: steps through its stages while on screen
+  const shot=document.getElementById('mod-shot'), modStatus=document.getElementById('mod-status'), stages=[...document.querySelectorAll('.mod__list li')];
+  let stageAt=0, stageTimer=0, autoStage=!reduce;
+  function stage(i){
+    stageAt=i; shot.dataset.stage=i; shot.style.setProperty('--p',(i+1)/stages.length); modStatus.textContent=stages[i].dataset.status;
+    stages.forEach((li,j)=>{li.classList.toggle('is-done',j<i||(i===stages.length-1&&j===i)); j===i?li.setAttribute('aria-current','step'):li.removeAttribute('aria-current')});
+  }
+  const nextStage=()=>{stage((stageAt+1)%stages.length); stageTimer=setTimeout(nextStage,stageAt===stages.length-1?3600:2000)};
+  stages.forEach((li,i)=>li.querySelector('button').addEventListener('click',()=>{autoStage=false; clearTimeout(stageTimer); stage(i)}));
+  new IntersectionObserver(([en])=>{clearTimeout(stageTimer); if(en.isIntersecting&&autoStage) stageTimer=setTimeout(nextStage,1400)},{threshold:.4}).observe(shot);
+  stage(0);
 
   // the connector demo
   const sec=document.getElementById('try'), plane=document.getElementById('plane'), discs=[...plane.querySelectorAll('.disc')];
@@ -645,7 +745,7 @@ footer{background:var(--ink);color:#fff;margin-top:clamp(88px,11vw,160px);paddin
   const dist=document.getElementById('dist'), distVal=document.getElementById('dist-val');
   const status=document.getElementById('status'), save=document.getElementById('save');
   const START=[74,-38]; let angle=[...START], top=0, saved=false;
-  // photo 1's aisle must point down (0deg), photo 2's must point up (180deg) to face it
+  // photo 1's carpet must point down (0deg), photo 2's must point up (180deg) to face it
   const target=i=>i?180:0, norm=a=>((a%360)+540)%360-180;
   const paint=i=>discs[i].querySelector('img').style.transform=`rotate(${angle[i]+target(i)}deg)`;
   function layout(){
@@ -663,7 +763,7 @@ footer{background:var(--ink);color:#fff;margin-top:clamp(88px,11vw,160px);paddin
     status.textContent= saved?`Saved: photo 1 to photo 2, ${dist.value} m. That is how tours are built.`
       : ok?'Lined up. Tap Save Connection.'
       : Math.abs(off[top])<6?`Photo ${top+1} is lined up. Switch image to turn photo ${2-top}.`
-      : `Drag photo ${top+1} to line up the aisle.`;
+      : `Drag photo ${top+1} to line up the carpet.`;
     layout();
   }
   rot.addEventListener('input',()=>{angle[top]=+rot.value;saved=false;check()});

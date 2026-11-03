@@ -2,4 +2,5 @@
 
 Design preview for client review. Not the official site.
 
-Demo panorama: "Laon Cathedral Interior 360x180, Picardy, France" by Diliff, CC BY-SA 3.0, via Wikimedia Commons.
+Demo panoramas from Poly Haven, CC0: "Glasshouse Interior" by Dario Barresi; "Lythwood Lounge" and "Lythwood Room" by Greg Zaal.
+Real Estate tour: "Marketing Real Estate" on GoThru (tourmkr.com).
