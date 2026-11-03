@@ -90,7 +90,7 @@ p{margin:0}
 .hud__cone{position:absolute;left:0;top:0;width:100%;height:50%;background:rgba(37,99,235,.55);clip-path:polygon(50% 100%,18% 0,82% 0)}
 .hud__dot{position:absolute;left:50%;top:50%;width:16px;height:16px;margin:-8px 0 0 -8px;border-radius:50%;background:#2563eb;box-shadow:0 0 0 3px #fff}
 .hud b{display:block;font-size:.9375rem}
-.hero__copy{position:absolute;z-index:3;left:clamp(24px,5vw,72px);bottom:clamp(28px,5vw,72px);width:min(640px,52%);color:#fff;pointer-events:none}
+.hero__copy{position:absolute;z-index:3;left:clamp(24px,5vw,72px);bottom:clamp(28px,5vw,72px);width:min(820px,56%);color:#fff;pointer-events:none}
 .hero__copy a{pointer-events:auto}
 .hero__badge{display:inline-flex;align-items:center;gap:10px;padding:7px 14px 7px 7px;border-radius:999px;font:600 .875rem/1 var(--text)}
 .hero__badge img{width:26px;height:26px;border-radius:8px}
@@ -284,7 +284,7 @@ footer{background:var(--ink);color:#fff;margin-top:clamp(88px,11vw,160px);paddin
 .mod__list .is-done .mod__ico{background:var(--teal-d);box-shadow:none}
 .mod__list .is-done .mod__ico::after{opacity:1;transform:rotate(45deg)}
 .mod__shot{position:relative;aspect-ratio:4/3;border-radius:var(--r-xl);overflow:hidden;background:#2b241c}
-.mod__shot img{width:100%;height:100%;object-fit:cover;object-position:0 50%}
+.mod__shot img{width:100%;height:100%;object-fit:cover;object-position:33% 50%}
 .mod__status{position:absolute;top:20px;left:20px;display:inline-flex;align-items:center;gap:10px;padding:12px 16px;border-radius:999px;background:#fff;font:700 .9375rem/1 var(--text);box-shadow:0 14px 30px -14px rgba(22,24,29,.5)}
 .mod__room{position:absolute;left:30%;top:52%;padding:10px 16px;border-radius:999px;background:var(--yellow);font:800 1.125rem/1 var(--display);letter-spacing:-.01em;opacity:0;transform:translateY(10px) scale(.96);transition:opacity .3s ease,transform .45s var(--ease-out)}
 .mod__shot[data-stage="3"] .mod__room,.mod__shot[data-stage="4"] .mod__room{opacity:1;transform:none}
@@ -391,16 +391,16 @@ footer{background:var(--ink);color:#fff;margin-top:clamp(88px,11vw,160px);paddin
       <div class="pano__track" id="pano-track">
         <div class="pano__copy">
           <img src="img/pano-home.webp" width="3840" height="797" alt="" draggable="false" fetchpriority="high">
-          <button class="hot" type="button" style="--x:.44;--y:.6" data-x=".44"><span>2</span><em>Photo 2 · Bedroom</em></button>
-          <button class="hot" type="button" style="--x:.81;--y:.62" data-x=".81"><span>3</span><em>Photo 3 · Dining</em></button>
-          <button class="hot" type="button" style="--x:.92;--y:.56" data-x=".92"><span>4</span><em>Photo 4 · Kitchen</em></button>
+          <button class="hot" type="button" style="--x:.13;--y:.62" data-x=".13"><span>2</span><em>Photo 2 · Dining room</em></button>
+          <button class="hot" type="button" style="--x:.42;--y:.62" data-x=".42"><span>3</span><em>Photo 3 · Kitchen</em></button>
+          <button class="hot" type="button" style="--x:.84;--y:.58" data-x=".84"><span>4</span><em>Photo 4 · Front hall</em></button>
         </div>
       </div>
       <div class="pano__scrim" aria-hidden="true"></div>
       <span class="pano__hint glass" id="pano-hint" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 13V5.5a1.5 1.5 0 0 1 3 0V12m0-1.5v-2a1.5 1.5 0 0 1 3 0V12m0-1a1.5 1.5 0 0 1 3 0v1m0 0a1.5 1.5 0 0 1 3 0v3a6 6 0 0 1-6 6h-2a6 6 0 0 1-5-2.7L3.4 15a1.6 1.6 0 0 1 2.5-2L8 15"/></svg>Drag to look around</span>
       <div class="hud glass" aria-hidden="true">
         <div class="hud__disc"><img id="hud-img" src="img/lookdown-home.webp" width="900" height="900" alt=""><i class="hud__cone"></i><i class="hud__dot"></i></div>
-        <span>You are at photo 1<b id="hud-label">Facing the bed</b></span>
+        <span>You are at photo 1<b id="hud-label">Facing the dining room</b></span>
       </div>
       <div class="hero__copy">
         <span class="hero__badge glass" data-in><img src="img/brand/icon.webp" width="255" height="255" alt="">GoThru 360 Virtual Tour Maker</span>
@@ -469,7 +469,7 @@ footer{background:var(--ink);color:#fff;margin-top:clamp(88px,11vw,160px);paddin
         </ol>
       </div>
       <figure class="mod__shot" id="mod-shot" data-stage="0" data-rise style="--d:1">
-        <img src="img/tour-bedroom.webp" width="3072" height="638" loading="lazy" alt="A bedroom photo on its way through the pipeline">
+        <img src="img/pipeline-bedroom.webp" width="3072" height="638" loading="lazy" alt="A bedroom photo on its way through the pipeline">
         <span class="mod__status"><i class="dot" aria-hidden="true"></i><span id="mod-status">Received · 12 photos with GPS</span></span>
         <span class="mod__room" aria-hidden="true">Bedroom</span>
         <span class="mod__bar" aria-hidden="true"><i></i></span>
@@ -481,15 +481,15 @@ footer{background:var(--ink);color:#fff;margin-top:clamp(88px,11vw,160px);paddin
   <section class="try" id="try" aria-labelledby="try-h">
     <div>
       <h2 id="try-h" class="h2" data-rise>Line it up.<br><span class="c-yellow">Try it here.</span></h2>
-      <p class="lead" data-rise style="--d:1">Each 360 photo is shown from above, floor in the middle. Drag the top photo until the carpet runs along the blue line. That is a connection.</p>
-      <p class="try__status" aria-live="polite" data-rise style="--d:2"><i></i><span id="status">Drag photo 1 to line up the carpet.</span></p>
+      <p class="lead" data-rise style="--d:1">Each 360 photo is shown from above, floor in the middle. Drag the top photo until the hallway runs along the blue line. That is a connection.</p>
+      <p class="try__status" aria-live="polite" data-rise style="--d:2"><i></i><span id="status">Drag photo 1 to line up the hallway.</span></p>
       <div class="try__ctrls" data-rise style="--d:3">
         <button class="btn btn--paper" id="switch" type="button">Switch image</button>
         <button class="btn btn--paper" id="reset" type="button">Start over</button>
         <label for="rot">Rotate photo <span id="rot-n">1</span><output id="rot-val" for="rot">74°</output></label>
         <input type="range" id="rot" min="-180" max="180" step="1" value="74">
       </div>
-      <p class="try__note">A working copy of the app's 360 Image Connector. Both photos use one public panorama, credited below.</p>
+      <p class="try__note">A working copy of the app's 360 Image Connector. Both photos use one panorama from the GoThru tour below.</p>
     </div>
     <div class="app" data-rise style="--d:1">
       <div class="phone"><div class="phone__screen">
@@ -501,8 +501,8 @@ footer{background:var(--ink);color:#fff;margin-top:clamp(88px,11vw,160px);paddin
         <div class="app__dist"><div><label for="dist">Distance</label><output id="dist-val" for="dist">3 m</output></div><input type="range" id="dist" min="1" max="12" value="3"></div>
         <div class="app__plane" id="plane">
           <div class="app__line" aria-hidden="true"></div>
-          <div class="disc is-top"><img src="img/lookdown-lounge.webp" width="900" height="900" alt="Photo 1 of a living room, seen from above"><span class="node" aria-hidden="true">1</span></div>
-          <div class="disc"><img src="img/lookdown-lounge.webp" width="900" height="900" alt="Photo 2 of a living room, seen from above"><span class="node" aria-hidden="true">2</span></div>
+          <div class="disc is-top"><img src="img/lookdown-hall.webp" width="900" height="900" alt="Photo 1 of a kitchen and hallway, seen from above"><span class="node" aria-hidden="true">1</span></div>
+          <div class="disc"><img src="img/lookdown-hall.webp" width="900" height="900" alt="Photo 2 of a kitchen and hallway, seen from above"><span class="node" aria-hidden="true">2</span></div>
         </div>
         <p class="app__hint">Drag each image so the path lines up on the blue line.</p>
         <button class="btn app__save" id="save" type="button" disabled>Save Connection</button>
@@ -652,7 +652,7 @@ footer{background:var(--ink);color:#fff;margin-top:clamp(88px,11vw,160px);paddin
     </div>
     <div class="legal">
       <span>© 2026 GoThru Media Inc. All rights reserved.</span>
-      <span>Demo panoramas from <a href="https://polyhaven.com/hdris">Poly Haven</a>, <a href="https://creativecommons.org/publicdomain/zero/1.0/">CC0</a>: “Glasshouse Interior” by Dario Barresi; “Lythwood Lounge” and “Lythwood Room” by Greg Zaal. Real Estate tour: “Marketing Real Estate” on GoThru.</span>
+      <span>All panoramas on this page come from the GoThru Real Estate tour <a href="https://tourmkr.com/F1kw9NgwSv/34728666p&amp;292.89h&amp;90t">“Marketing Real Estate”</a>.</span>
     </div>
   </div>
 </footer>
@@ -714,7 +714,7 @@ footer{background:var(--ink);color:#fff;margin-top:clamp(88px,11vw,160px);paddin
 
   // hero: the HUD disc follows the heading
   const hud=document.getElementById('hud-img'), hudLabel=document.getElementById('hud-label');
-  const names=[[0,'Facing the kitchen'],[.2,'Facing the window seat'],[.44,'Facing the bed'],[.62,'Facing the valley'],[.81,'Facing the dining table'],[1,'Facing the kitchen']];
+  const names=[[0,'Facing the living room'],[.13,'Facing the dining room'],[.38,'Facing the kitchen'],[.6,'Facing the sink'],[.84,'Facing the front hall'],[1,'Facing the living room']];
   viewer(document.getElementById('pano'),{hint:document.getElementById('pano-hint'),onTurn:u=>{
     hud.style.transform=`rotate(${-(u-.5)*360}deg)`;
     hudLabel.textContent=names.reduce((a,b)=>Math.abs(b[0]-u)<Math.abs(a[0]-u)?b:a)[1];
@@ -745,7 +745,7 @@ footer{background:var(--ink);color:#fff;margin-top:clamp(88px,11vw,160px);paddin
   const dist=document.getElementById('dist'), distVal=document.getElementById('dist-val');
   const status=document.getElementById('status'), save=document.getElementById('save');
   const START=[74,-38]; let angle=[...START], top=0, saved=false;
-  // photo 1's carpet must point down (0deg), photo 2's must point up (180deg) to face it
+  // photo 1's hallway must point down (0deg), photo 2's must point up (180deg) to face it
   const target=i=>i?180:0, norm=a=>((a%360)+540)%360-180;
   const paint=i=>discs[i].querySelector('img').style.transform=`rotate(${angle[i]+target(i)}deg)`;
   function layout(){
@@ -763,7 +763,7 @@ footer{background:var(--ink);color:#fff;margin-top:clamp(88px,11vw,160px);paddin
     status.textContent= saved?`Saved: photo 1 to photo 2, ${dist.value} m. That is how tours are built.`
       : ok?'Lined up. Tap Save Connection.'
       : Math.abs(off[top])<6?`Photo ${top+1} is lined up. Switch image to turn photo ${2-top}.`
-      : `Drag photo ${top+1} to line up the carpet.`;
+      : `Drag photo ${top+1} to line up the hallway.`;
     layout();
   }
   rot.addEventListener('input',()=>{angle[top]=+rot.value;saved=false;check()});
